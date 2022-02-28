@@ -17,10 +17,25 @@
 <body>
     <div class="container-fulid body-color color-1">
         <!-- header  -->
-        <div class="container bg-color  d-flex align-items-center justify-content-center p-4 ">
+        <div class="container-fulid row bg-color mx-auto  p-4 rounded mb-4 ">
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img src="image/2.PNG" class=" img-fluid me-2" width="100px" height="100px" alt="">
+                <h1 class="color-2 fw-bold ps-2">Phone Piea Exclusive</h1>
+            </div>
 
-            <img src="image/2.PNG" class=" img-fluid " width="100px" height="100px" alt="">
-            <h1 class="color-2 fw-bold ps-2">Phone Piea Exclusive</h1>
+            <div class="col-md-6 d-flex align-items-center justify-content-center ">
+                <input id="search-input" type="text" placeholder="Search Phone Here...">
+                <button onclick="searchPhone()" class=" btn-outline-dark" id="search-btn"><i
+                        class="fa-solid fa-magnifying-glass px-2"></i>
+                    Search
+                </button>
+            </div>
+        </div>
+        <!-- search input feild  -->
+        <div class="container">
+            <div id="phone-container" class=" row row-cols-1 row-cols-md-3 g-4">
+
+            </div>
         </div>
 
         <!-- script linked  -->
