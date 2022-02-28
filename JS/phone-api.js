@@ -1,4 +1,5 @@
 const searchPhone = async () => {
+    // get search input 
     const searchInput = document.getElementById('search-input');
     const searchValue = searchInput.value;
     searchInput.value = ''
@@ -11,6 +12,7 @@ const searchPhone = async () => {
 }
 
 const phonesData = datas => {
+    // get search result 
     // console.log(datas);
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
