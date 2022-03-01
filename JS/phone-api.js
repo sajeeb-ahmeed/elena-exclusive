@@ -14,10 +14,11 @@ const searchPhone = async () => {
 const phonesData = datas => {
     // get search result 
     // console.log(datas);
+
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
-    datas.forEach(element => {
-        console.log(element);
+    datas.slice(0, 20).forEach(element => {
+        // console.log(element);
         const createDiv = document.createElement('div');
         createDiv.className = 'col';
         createDiv.innerHTML = `
@@ -26,10 +27,58 @@ const phonesData = datas => {
                 <div class="card-body">
                     <h5 class="card-title"> Brand: ${element.brand}</h5>
                     <h6> Model: ${element.phone_name}  </h6>     
-                    <button class=" btn-outline-dark"> See Details </button>                                            
+                    <button onclick="phoneInfo('${element.slug}')" class=" btn-outline-dark"> See Details </button>                                            
                 </div>
             </div>
                                 `
         phoneContainer.appendChild(createDiv)
     });
+}
+
+const phoneInfo = async phonID => {
+    const info_url = (`https://openapi.programming-hero.com/api/phone/${phonID}`);
+    const res = await fetch(info_url)
+    const data = await res.json()
+    showPhoneInfo(data.data);
+
+}
+// phoneInfo()
+const showPhoneInfo = info => {
+    console.log(info);
+    const phoneDetails = document.getElementById('phone-info');
+    phoneDetails.innerHTML = `
+        <div class="container d-flex mx-auto d-flex  justify-content-center p-5 g-3 ">
+          <div class="col-md-4 me-0"><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
+          <div class="col-md-3">
+                <h2 class="border-bottom d-inline fw-bold pb-2"> About Phone </h2>
+                <h5 class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name : ${info.name}  </h5 >
+                <h6 class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : ${info.releaseDate ? info.releaseDate : 'no relasedate found'} </h6 >
+
+          </div >
+         <div class="col-md-3">
+             <h2 class="border-bottom d-inline fw-bold pb-2"> Main Features </h2>
+             <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> ChipSet : ${info.mainFeatures.chipSet} </p>
+             <p class=" p-2 "><i class="fa-solid fa-circle-check text-primary "></i> Display-Size : ${info.mainFeatures.displaySize} </p>
+             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory : ${info.mainFeatures.memory} </p>
+             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : <br> ${info.mainFeatures.sensors.slice(0, 4)} </p>
+             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage : ${info.mainFeatures.storage} </p>
+         </div>
+         <div class="col-md-3">
+                <h2 class="border-bottom d-inline fw-bold pb-2"> Others Info </h2>
+                <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> Bluetooth :
+                ${info?.others?.Bluetooth ? info.others.Bluetooth : 'No Bluetooth'} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> GPS :
+                ${info?.others?.GPS ? info.others.GPS : 'No GPS'} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> USB :
+                ${info?.others?.USB ? info.others.USB : 'No USB'} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> NFC :
+                ${info?.others?.NFC ? info.others.NFC : 'No NFC'} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Radio : 
+                ${info?.others?.Radio ? info.others.Radio : 'No Radio'} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> WLAN :
+                ${info?.others?.WLAN ? info.others.WLAN : 'No WLAN'} </p>
+         </div>
+          </div >
+    `
+
 }

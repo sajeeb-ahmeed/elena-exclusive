@@ -3,12 +3,14 @@
     color: rgb(26, 26, 26);
 }
 .color-2{
-    color: #1d4c92;
+    color: #39108B;
 }
-.body-color{
-    background-color: rgba(5, 5, 5, 0.972)
-}
+/* .body-color{
+    background-color: rgba(255, 255, 255, 0.972)
+} */
 .bg-color{
-    background-color: rgb(255, 255, 255);
+    background-color: #F7F3FF ;
 }
-
+.object-fit{
+    object-fit: cover;
+}
