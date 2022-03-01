@@ -3,7 +3,7 @@
     color: rgb(26, 26, 26);
 }
 .color-2{
-    color: #39108B;
+    color: rgba(40, 17, 85, 0.897);
 }
 /* .body-color{
     background-color: rgba(255, 255, 255, 0.972)
@@ -13,4 +13,51 @@
 }
 .object-fit{
     object-fit: cover;
+}
+
+
+/* popup alert msg  */
+.toast-message {
+    position: fixed;
+    z-index: 999;
+    font-weight: 600;
+    color: #ff0000;
+    border: 1px solid #fff;
+    border-radius: 0.25rem;
+    padding: 1rem ;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.toast-message-slide-in {
+    animation: toast-animation-in 0.5s ease-in;
+}
+
+.toast-message-slide-out {
+    animation: toast-animation-out 0.5s ease-in;
+}
+
+@keyframes toast-animation-in {
+    from {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes toast-animation-out {
+    from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(200px);
+        opacity: 0;
+    }
 }

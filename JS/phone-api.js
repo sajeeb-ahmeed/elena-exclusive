@@ -1,23 +1,31 @@
+const phoneDetails = document.getElementById('phone-info');
+const phoneContainer = document.getElementById('phone-container');
+
 const searchPhone = async () => {
     // get search input 
     const searchInput = document.getElementById('search-input');
     const searchValue = searchInput.value;
     searchInput.value = ''
-    // console.log(searchValue);
-    const api_url = (`https://openapi.programming-hero.com/api/phones?search=${searchValue}`);
-    const response = await fetch(api_url);
-    const data = await response.json();
-    phonesData(data.data);
+    phoneDetails.innerHTML = ''
+    if (searchValue == '' || searchValue < 0 || searchValue > 0) {
+        phoneDetails.innerHTML = '';
+        phoneContainer.innerHTML = '';
+        return generateToastMessage('! Please Enter A Phone Name');
+    }
+    else {
+        const api_url = (`https://openapi.programming-hero.com/api/phones?search=${searchValue}`);
+        const response = await fetch(api_url);
+        const data = await response.json();
+        phonesData(data.data);
+    }
 
 }
 
 const phonesData = datas => {
     // get search result 
-    // console.log(datas);
-
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
-    datas.slice(0, 20).forEach(element => {
+    datas?.slice(0, 20).forEach(element => {
         // console.log(element);
         const createDiv = document.createElement('div');
         createDiv.className = 'col';
@@ -27,7 +35,7 @@ const phonesData = datas => {
                 <div class="card-body">
                     <h5 class="card-title"> Brand: ${element.brand}</h5>
                     <h6> Model: ${element.phone_name}  </h6>     
-                    <button onclick="phoneInfo('${element.slug}')" class=" btn-outline-dark"> See Details </button>                                            
+                    <button onclick="phoneInfo('${element.slug}')" class=" btn-outline-dark"><i class="fa-solid fa-bars-staggered"></i> See Details </button>                                            
                 </div>
             </div>
                                 `
@@ -35,7 +43,9 @@ const phonesData = datas => {
     });
 }
 
+
 const phoneInfo = async phonID => {
+    // getPhone details By ID 
     const info_url = (`https://openapi.programming-hero.com/api/phone/${phonID}`);
     const res = await fetch(info_url)
     const data = await res.json()
@@ -44,27 +54,36 @@ const phoneInfo = async phonID => {
 }
 // phoneInfo()
 const showPhoneInfo = info => {
+    //phone details 
     console.log(info);
     const phoneDetails = document.getElementById('phone-info');
     phoneDetails.innerHTML = `
-        <div class="container d-flex mx-auto d-flex  justify-content-center p-5 g-3 ">
-          <div class="col-md-4 me-0"><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
-          <div class="col-md-3">
-                <h2 class="border-bottom d-inline fw-bold pb-2"> About Phone </h2>
-                <h5 class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name : ${info.name}  </h5 >
-                <h6 class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : ${info.releaseDate ? info.releaseDate : 'no relasedate found'} </h6 >
+    <div class="container d-flex mx-auto d-flex row justify-content-center p-5 g-3 ">
+          <div class="col-md-3 col-12 me-0 "><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
+          <div class="col-md-3 col-12 ">
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> About Phone </h2>
+                <h5 class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name :
+                 ${info.name}  </h5 >
+                <h6 class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : 
+                ${info.releaseDate ? info.releaseDate : 'no relasedate found'} </h6 >
 
           </div >
-         <div class="col-md-3">
-             <h2 class="border-bottom d-inline fw-bold pb-2"> Main Features </h2>
-             <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> ChipSet : ${info.mainFeatures.chipSet} </p>
-             <p class=" p-2 "><i class="fa-solid fa-circle-check text-primary "></i> Display-Size : ${info.mainFeatures.displaySize} </p>
-             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory : ${info.mainFeatures.memory} </p>
-             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : <br> ${info.mainFeatures.sensors.slice(0, 4)} </p>
-             <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage : ${info.mainFeatures.storage} </p>
+          
+         <div class="col-md-3 col-12 ">
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> Main Features </h2>
+                <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> ChipSet :
+                ${info.mainFeatures.chipSet} </p>
+                <p class=" p-2 "><i class="fa-solid fa-circle-check text-primary "></i> Display-Size :
+                ${info.mainFeatures.displaySize} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory :
+                ${info.mainFeatures.memory} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : <br>
+                ${info.mainFeatures.sensors.slice(0, 4)} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage :
+                ${info.mainFeatures.storage} </p>
          </div>
-         <div class="col-md-3">
-                <h2 class="border-bottom d-inline fw-bold pb-2"> Others Info </h2>
+         <div class="col-md-3 col-12 ">
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> Others Info </h2>
                 <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> Bluetooth :
                 ${info?.others?.Bluetooth ? info.others.Bluetooth : 'No Bluetooth'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> GPS :
@@ -78,7 +97,29 @@ const showPhoneInfo = info => {
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> WLAN :
                 ${info?.others?.WLAN ? info.others.WLAN : 'No WLAN'} </p>
          </div>
-          </div >
+     </div>
     `
 
+}
+//toast msg 
+let div = null;
+
+const generateToastMessage = (msg) => {
+    //create div
+    const alert = document.getElementById('alert')
+    div = document.createElement('div');
+    div.innerText = msg;
+    div.className = 'toast-message my-btn-pulse-grow toast-message-slide-in';
+
+    div.addEventListener('click', function () {
+        div.classList.remove('toast-message-slide-in');
+        div.classList.add('toast-message-slide-out');
+
+        div.addEventListener('animationend', function () {
+            div.remove();
+            div = null;
+        });
+    });
+
+    alert.appendChild(div);
 }
