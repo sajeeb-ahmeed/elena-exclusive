@@ -35,7 +35,7 @@ const phonesData = datas => {
                 <div class="card-body">
                     <h5 class="card-title"> Brand: ${element.brand}</h5>
                     <h6> Model: ${element.phone_name}  </h6>     
-                    <button onclick="phoneInfo('${element.slug}')" class=" btn-outline-dark"><i class="fa-solid fa-bars-staggered"></i> See Details </button>                                            
+                    <button onclick="phoneInfo('${element.slug}')" class=" btn-outline-dark italic"><i class="fa-solid fa-bars-staggered"></i> See Details </button>                                            
                 </div>
             </div>
                                 `
@@ -61,7 +61,7 @@ const showPhoneInfo = info => {
     <div class="container d-flex mx-auto d-flex row justify-content-center p-5 g-3 ">
           <div class="col-md-3 col-12 me-0 "><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
           <div class="col-md-3 col-12 ">
-                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> About Phone </h2>
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i>About Phone</i> </h2>
                 <h5 class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name :
                  ${info.name}  </h5 >
                 <h6 class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : 
@@ -70,20 +70,20 @@ const showPhoneInfo = info => {
           </div >
           
          <div class="col-md-3 col-12 ">
-                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> Main Features </h2>
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i> Main Features</i> </h2>
                 <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> ChipSet :
                 ${info.mainFeatures.chipSet} </p>
                 <p class=" p-2 "><i class="fa-solid fa-circle-check text-primary "></i> Display-Size :
                 ${info.mainFeatures.displaySize} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory :
                 ${info.mainFeatures.memory} </p>
-                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : <br>
-                ${info.mainFeatures.sensors.slice(0, 4)} </p>
+                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : 
+                ${info.mainFeatures.sensors?.slice(0, 5)} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage :
                 ${info.mainFeatures.storage} </p>
          </div>
          <div class="col-md-3 col-12 ">
-                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> Others Info </h2>
+                <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i>Others Info</i> </h2>
                 <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> Bluetooth :
                 ${info?.others?.Bluetooth ? info.others.Bluetooth : 'No Bluetooth'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> GPS :

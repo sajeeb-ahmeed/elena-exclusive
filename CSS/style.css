@@ -14,7 +14,9 @@
 .object-fit{
     object-fit: cover;
 }
-
+.italic{
+    font-style: italic;
+}
 
 /* popup alert msg  */
 .toast-message {
