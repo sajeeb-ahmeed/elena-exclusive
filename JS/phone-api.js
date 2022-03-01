@@ -18,7 +18,7 @@ const searchPhone = async () => {
         const data = await response.json();
         phonesData(data.data);
         if (data.status === false) {
-            return generateToastMessage('! No result Found 😒');
+            return generateToastMessage('! no result found 😒');
         }
     }
 
