@@ -6,6 +6,7 @@ const searchPhone = async () => {
     const searchInput = document.getElementById('search-input');
     const searchValue = searchInput.value;
     searchInput.value = ''
+    alert.innerHTML = ''
     phoneDetails.innerHTML = ''
     if (searchValue == '' || searchValue < 0 || searchValue > 0) {
         phoneDetails.innerHTML = '';
@@ -18,7 +19,7 @@ const searchPhone = async () => {
         const data = await response.json();
         phonesData(data.data);
         if (data.status === false) {
-            return generateToastMessage('! no result found 😒');
+            return generateToastMessage(` ${searchValue} ! is not found 😒`);
         }
     }
 
@@ -88,17 +89,17 @@ const showPhoneInfo = info => {
          <div class="col-md-3 col-12 ">
                 <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i>Others Info</i> </h2>
                 <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> Bluetooth :
-                ${info?.others?.Bluetooth ? info.others.Bluetooth : 'No Bluetooth'} </p>
+                ${info?.others?.Bluetooth ? info.others.Bluetooth : 'No Bluetooth  data found'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> GPS :
-                ${info?.others?.GPS ? info.others.GPS : 'No GPS'} </p>
+                ${info?.others?.GPS ? info.others.GPS : 'No GPS data found'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> USB :
-                ${info?.others?.USB ? info.others.USB : 'No USB'} </p>
+                ${info?.others?.USB ? info.others.USB : 'No USB data found'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> NFC :
-                ${info?.others?.NFC ? info.others.NFC : 'No NFC'} </p>
+                ${info?.others?.NFC ? info.others.NFC : 'No NFC data found'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Radio : 
-                ${info?.others?.Radio ? info.others.Radio : 'No Radio'} </p>
+                ${info?.others?.Radio ? info.others.Radio : 'No Radio data found'} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> WLAN :
-                ${info?.others?.WLAN ? info.others.WLAN : 'No WLAN'} </p>
+                ${info?.others?.WLAN ? info.others.WLAN : 'No WLAN data found'} </p>
          </div>
      </div>
     `
@@ -107,9 +108,9 @@ const showPhoneInfo = info => {
 //toast msg 
 let div = null;
 
+const alert = document.getElementById('alert')
 const generateToastMessage = (msg) => {
     //create div
-    const alert = document.getElementById('alert')
     div = document.createElement('div');
     div.innerText = msg;
     div.className = 'toast-message my-btn-pulse-grow toast-message-slide-in';
