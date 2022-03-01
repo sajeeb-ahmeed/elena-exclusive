@@ -10,13 +10,16 @@ const searchPhone = async () => {
     if (searchValue == '' || searchValue < 0 || searchValue > 0) {
         phoneDetails.innerHTML = '';
         phoneContainer.innerHTML = '';
-        return generateToastMessage('! Please Enter A Phone Name');
+        return generateToastMessage('! Please enter a phone name 🤗');
     }
     else {
         const api_url = (`https://openapi.programming-hero.com/api/phones?search=${searchValue}`);
         const response = await fetch(api_url);
         const data = await response.json();
         phonesData(data.data);
+        if (data.status === false) {
+            return generateToastMessage('! No result Found 😒');
+        }
     }
 
 }
