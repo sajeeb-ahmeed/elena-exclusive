@@ -82,7 +82,19 @@ const showPhoneInfo = info => {
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory :
                 ${info.mainFeatures.memory} </p>
                 <p class="p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : 
-                ${info.mainFeatures.sensors} </p>
+                
+                  <span> ✔ ${info?.mainFeatures?.sensors[0] ? info?.mainFeatures?.sensors[0] : ''}</span>  .
+                  <span> ✔ ${info?.mainFeatures?.sensors[1] ? info?.mainFeatures?.sensors[1] : ''}</span> .
+                  <span>✔ ${info?.mainFeatures?.sensors[2] ? info?.mainFeatures?.sensors[2] : ''}</span> <br>
+                  <span> ✔ ${info?.mainFeatures?.sensors[3] ? info?.mainFeatures?.sensors[3] : ''}</span> .
+                  <span> ✔ ${info?.mainFeatures?.sensors[4] ? info?.mainFeatures?.sensors[4] : ''}</span> .
+                  <span> ✔ ${info?.mainFeatures?.sensors[5] ? info?.mainFeatures?.sensors[5] : ''}   <br> 
+                   ${info?.mainFeatures?.sensors[6] ? info?.mainFeatures?.sensors[6] : ''} 
+                   ✔ ${info?.mainFeatures?.sensors[7] ? info?.mainFeatures?.sensors[7] : ''} 
+                   ${info?.mainFeatures?.sensors[8] ? info?.mainFeatures?.sensors[8] : ''}
+                
+                  </span> 
+                  </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage :
                 ${info.mainFeatures.storage} </p>
          </div>
