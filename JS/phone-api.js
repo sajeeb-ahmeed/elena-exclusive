@@ -62,18 +62,18 @@ const showPhoneInfo = info => {
     console.log(info);
     const phoneDetails = document.getElementById('phone-info');
     phoneDetails.innerHTML = `
-    <div class="container d-flex mx-auto d-flex row justify-content-center p-5 g-3 ">
-          <div class="col-md-3 col-12 me-0 "><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
-          <div class="col-md-3 col-12 ">
+    <div class="container d-flex mx-auto d-flex flex-wrap row justify-content-center  g-3 ">
+          <div class="col-md-3 col-12  "><img src="${info.image}" class="d-block mx-auto" alt=""> </div>     
+          <div class="col-md-2 col-12 ">
                 <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i>About Phone</i> </h2>
-                <h5 class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name :
-                 ${info.name}  </h5 >
-                <h6 class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : 
-                ${info.releaseDate ? info.releaseDate : 'no relasedate found'} </h6 >
+                <p class=" p-2 mt-2"> <i class="fa-solid fa-mobile-screen-button text-primary"></i> Model Name :
+                 ${info.name}  </ >
+                <p class=" p-2 mt-2"> <i class="fa-solid fa-hourglass-start text-primary"></i> Relase Date : 
+                ${info.releaseDate ? info.releaseDate : 'no relasedate found'} </p >
 
           </div >
           
-         <div class="col-md-3 col-12 ">
+         <div class="col-md-4 col-12  ">
                 <h2 class="border-bottom d-inline fw-bold pb-2 color-2"> <i> Main Features</i> </h2>
                 <p class=" p-2 mt-2"> <i class="fa-solid fa-circle-check text-primary "></i> ChipSet :
                 ${info.mainFeatures.chipSet} </p>
@@ -81,8 +81,8 @@ const showPhoneInfo = info => {
                 ${info.mainFeatures.displaySize} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Memory :
                 ${info.mainFeatures.memory} </p>
-                <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : 
-                ${info.mainFeatures.sensors?.slice(0, 5)} </p>
+                <p class="p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Sensors : 
+                ${info.mainFeatures.sensors} </p>
                 <p class=" p-2 "> <i class="fa-solid fa-circle-check text-primary "></i> Storage :
                 ${info.mainFeatures.storage} </p>
          </div>
